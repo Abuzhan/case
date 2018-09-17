@@ -1,8 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import {WithOrganizations} from '../../containers/WithOrganization';
-import {OrganizationInfo, H1, P1, P2} from '../../components/OrganizationInfo';
-import {Wrapper} from '../../components/Wrapper';
+import {OrganizationInfo} from '../../components/OrganizationInfo';
+import {Wrapper, Header, Medium, LargeBold} from '../../components/Common';
 import {TeamInfo} from '../../components/TeamInfo';
 
 import {CONFIG} from '../../config';
@@ -29,15 +28,14 @@ class Home extends React.Component {
                         if (loading) {
                             return <p>Data is loading</p>;
                         }
-                        console.log(data)
                         return (
                             <div>
                                 <OrganizationInfo>
-                                    <H1>{data.organization.name}</H1>
-                                    <P1>Organization ID: {data.organization.id}</P1>
-                                    <P1>Created at: {data.organization.created}</P1>
+                                    <Header>{data.organization.name}</Header>
+                                    <Medium>Organization ID: {data.organization.id}</Medium>
+                                    <Medium>Created at: {data.organization.created}</Medium>
                                 </OrganizationInfo>
-                                <P2>Organization's Teams:</P2>
+                                <LargeBold>Organization's Teams:</LargeBold>
                                 {data.organization.teams.edges.map(team => {
                                     return (<TeamInfo key={team.node.id} teamData={team.node}></TeamInfo>)
                                 })}
