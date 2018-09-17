@@ -1,6 +1,6 @@
 
 // Replace token
-const TOKEN = 'INSERT_TOKEN';
+const TOKEN = 'eyJhbGciOiJIUzI1NiIsImlhdCI6MTUzNzAyNzg2NiwiZXhwIjoxNTM3NjMyNjY2fQ.eyJpZCI6MzE1fQ.8sK4aPXHRgeojO5rZ6mj2tGSjXNsqq4Bxt9eGRT11rc';
 
 // URL to our development environment.
 const GRAPHQL_URL = 'https://alva-backend-dev.appspot.com/graphql';

@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import {WithOrganizations} from '../../containers/WithOrganization';
-import {H1} from '../../components/H1';
+import {OrganizationInfo, H1, P1, P2} from '../../components/OrganizationInfo';
+import {Wrapper} from '../../components/Wrapper';
+import {TeamInfo} from '../../components/TeamInfo';
 
 import {CONFIG} from '../../config';
 
@@ -22,17 +24,23 @@ class Home extends React.Component {
 
         return (
             <Wrapper>
-                <H1>Home</H1>
                 <WithOrganizations onError={this.renderError} organizationId={CONFIG.ORGANIZATION_ID}>
                     {({loading, data}) => {
                         if (loading) {
-                            return <p>Loading</p>;
+                            return <p>Data is loading</p>;
                         }
-
+                        console.log(data)
                         return (
                             <div>
-                                <p>ID: {data.organization.id}</p>
-                                <p>Name: {data.organization.name}</p>
+                                <OrganizationInfo>
+                                    <H1>{data.organization.name}</H1>
+                                    <P1>Organization ID: {data.organization.id}</P1>
+                                    <P1>Created at: {data.organization.created}</P1>
+                                </OrganizationInfo>
+                                <P2>Organization's Teams:</P2>
+                                {data.organization.teams.edges.map(team => {
+                                    return (<TeamInfo key={team.node.id} teamData={team.node}></TeamInfo>)
+                                })}
                             </div>
                         );
                     }}
@@ -41,10 +49,5 @@ class Home extends React.Component {
         );
     }
 }
-
-
-const Wrapper = styled.div`
-   padding: 24px;
-`;
 
 export default Home;
